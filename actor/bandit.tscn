@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bulg8j8pnf2cq"]
+
+[ext_resource type="Script" uid="uid://7xffpceih0e8" path="res://actor/Enemy.cs" id="1_tqfxu"]
+[ext_resource type="PackedScene" uid="uid://dg5dw8hthjxg" path="res://creature/person.tscn" id="2_uqndw"]
+
+[node name="Bandit" type="Node2D" unique_id=1755440669 node_paths=PackedStringArray("Creature")]
+script = ExtResource("1_tqfxu")
+DetectionRadius = 5
+Creature = NodePath("Person")
+
+[node name="Person" parent="." unique_id=1983694874 instance=ExtResource("2_uqndw")]
+z_index = 1
+
+[node name="Camera" type="Camera2D" parent="Person" unique_id=1444772459]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0

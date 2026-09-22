@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dy765mmi23mh"]
+
+[ext_resource type="PackedScene" uid="uid://dg5dw8hthjxg" path="res://creature/person.tscn" id="1_c6ltv"]
+[ext_resource type="Script" uid="uid://rsi1iqronvk6" path="res://actor/Player.cs" id="1_xrnsr"]
+
+[node name="Player" type="Node2D" unique_id=1755440669 node_paths=PackedStringArray("Creature") groups=["Players"]]
+script = ExtResource("1_xrnsr")
+Creature = NodePath("Person")
+
+[node name="Person" parent="." unique_id=1983694874 instance=ExtResource("1_c6ltv")]
+z_index = 1
+
+[node name="Camera" type="Camera2D" parent="Person" unique_id=1444772459]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0

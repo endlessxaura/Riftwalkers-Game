@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://d7rgb6urtutk"]
+
+[ext_resource type="Texture2D" uid="uid://dt8edxp1cvwj0" path="res://ProjectUtumno_full.png" id="1_j3njw"]
+
+[resource]
+atlas = ExtResource("1_j3njw")
+region = Rect2(256, 2368, 32, 32)
+filter_clip = true

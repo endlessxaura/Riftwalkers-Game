@@ -1,0 +1,9 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://bvq71aj3cyioi"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1bkoq"]
+load_path = "res://.godot/imported/ProjectUtumno_full.png-dc079ca8a554b03c942048a5fe437528.ctex"
+
+[resource]
+atlas = SubResource("CompressedTexture2D_1bkoq")
+region = Rect2(192, 2560, 32, 32)
+filter_clip = true
