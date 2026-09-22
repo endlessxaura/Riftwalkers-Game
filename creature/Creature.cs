@@ -71,7 +71,6 @@ public partial class Creature : StaticBody2D
 		Map.Instance.Occupy(GlobalPosition);
 		if (path.Count() > 1)
 		{
-			Debug.WriteLine($"Moving from {GlobalPosition} along Path " + path.Join(", ") + " with movement vector " + (path[1] - GlobalPosition));
 			return Move(((path[1] - GlobalPosition) / Map.TileSize).RoundToInt());
 		} else
 		{

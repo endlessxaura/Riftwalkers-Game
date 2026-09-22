@@ -17,7 +17,6 @@ public partial class Enemy : Actor
         {
             if (player.GlobalPosition.DistanceTo(GlobalPosition) <= DetectionRadius * Map.TileSize)
             {
-                Debug.WriteLine("Player found");
                 Creature.MoveToward(player.GlobalPosition);
             }
         }
