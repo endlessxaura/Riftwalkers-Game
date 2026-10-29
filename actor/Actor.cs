@@ -67,7 +67,7 @@ public abstract partial class Actor : Node2D
 	/// <summary>
 	/// This ends this actors turn. It can be used to cancel an ongoing turn.
 	/// </summary>
-	protected void EndTurn()
+	public virtual void EndTurn()
 	{
 		if (_activeTurn != null && !_activeTurn.IsCompleted)
 		{
@@ -76,16 +76,6 @@ public abstract partial class Actor : Node2D
 		}
 		RemoveFromGroup(Groups.Actors_Ready);
 		_isActive = false;
-	}
-	#endregion
-	
-	#region Controller functions
-	protected void TryMove(int x, int y)
-	{
-		if (Creature.Move(x, y))
-		{
-			EndTurn();
-		}
 	}
 	#endregion
 }

@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dy765mmi23mh"]
 
 [ext_resource type="PackedScene" uid="uid://dg5dw8hthjxg" path="res://creature/person.tscn" id="1_c6ltv"]
-[ext_resource type="Script" uid="uid://rsi1iqronvk6" path="res://actor/Player.cs" id="1_xrnsr"]
+[ext_resource type="Script" uid="uid://1d4awaxg4tqp" path="res://actor/Player/Player.cs" id="1_pcoxj"]
 
 [node name="Player" type="Node2D" unique_id=1755440669 node_paths=PackedStringArray("Creature") groups=["Players"]]
-script = ExtResource("1_xrnsr")
+script = ExtResource("1_pcoxj")
 Creature = NodePath("Person")
 
 [node name="Person" parent="." unique_id=1983694874 instance=ExtResource("1_c6ltv")]

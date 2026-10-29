@@ -16,11 +16,13 @@ public partial class Creature : StaticBody2D
 	public float MaxEnergy { get; set; } = 100f;
 	public float CurrentHealth { get => _currentHealth; }
 	[Export]
-    public float AttackDamage { get; set; } = 10f;
+	public float AttackRange { get; set; } = 1f;
+	[Export]
+	public float AttackDamage { get; set; } = 10f;
 
 	private float _currentHealth;
 	private bool _outlined = false;
-	
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -50,7 +52,8 @@ public partial class Creature : StaticBody2D
 			GlobalPosition = newPosition;
 			Map.Instance.Occupy(GlobalPosition);
 			return true;
-		} else
+		}
+		else
 		{
 			return false;
 		}
@@ -67,7 +70,6 @@ public partial class Creature : StaticBody2D
 		return Move(movementVector.X, -movementVector.Y);
 	}
 
-
 	/// <summary>
 	/// Moves the creature along a path toward the specified point
 	/// </summary>
@@ -81,7 +83,8 @@ public partial class Creature : StaticBody2D
 		if (path.Count() > 1)
 		{
 			return Move(((path[1] - GlobalPosition) / Map.TileSize).RoundToInt());
-		} else
+		}
+		else
 		{
 			return false;
 		}
@@ -107,36 +110,42 @@ public partial class Creature : StaticBody2D
 		_currentHealth = Mathf.Clamp(_currentHealth + Mathf.Max(amount, 0), 0, MaxHealth);
 	}
 
-    /// <summary>
-    /// Attacks another creature for this creature's AttackDamage.
-    /// </summary>
-    /// <param name="target">The creature to attack.</param>
-    /// <returns>True if damage was dealt.</returns>
+	/// <summary>
+	/// Attacks another creature for this creature's AttackDamage.
+	/// </summary>
+	/// <param name="target">The creature to attack.</param>
+	/// <returns>True if damage was dealt.</returns>
 	public bool Attack(Creature target)
-    {
-        if (target == null || target == this || target.CurrentHealth <= 0)
-        {
-            return false;
-        }
-        target.Damage(AttackDamage);
+	{
+		if (
+			target == null
+			|| target == this
+			|| target.CurrentHealth <= 0
+			|| GlobalPosition.DistanceTo(target.GlobalPosition) > AttackRange * Map.TileSize
+		)
+		{
+			return false;
+		}
+		target.Damage(AttackDamage);
 		// TODO: animation
 		// TODO: sound
-        return true;
-    }
+		return true;
+	}
 
 	/// <summary>
 	/// Applies an outline shader to the creature
 	/// </summary>
-	public void Outline()
+	public void Outline(Color? color = null)
 	{
 		((ShaderMaterial)BodySprite.Material).SetShaderParameter("outline_width", 1);
+		((ShaderMaterial)BodySprite.Material).SetShaderParameter("outline_color", color ?? Colors.Blue);
 	}
 
 	/// <summary>
 	/// Removes the outline shader from the creature
 	/// </summary>
 	public void RemoveOutline()
-	{	
+	{
 		((ShaderMaterial)BodySprite.Material).SetShaderParameter("outline_width", 0);
 	}
 }

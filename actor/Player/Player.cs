@@ -5,31 +5,23 @@ using System.Threading.Tasks;
 
 /// <summary>
 /// A Player is an Actor that responds to user input.
+/// This works as a state machine.
 /// </summary>
 public partial class Player : Actor
 {
+	protected PlayerState CurrentState { get; set; }
+
 	public override void _PhysicsProcess(double delta)
 	{
 		if (!IsActive)
 		{
 			return;
 		}
-		if (Input.IsActionJustPressed(InputBindings.Up))
+		if (CurrentState == null)
 		{
-			TryMove(0, 1);
+			CurrentState = new ExplorationState(this);
 		}
-		else if (Input.IsActionJustPressed(InputBindings.Down))
-		{
-			TryMove(0, -1);
-		}
-		else if (Input.IsActionJustPressed(InputBindings.Left))
-		{
-			TryMove(-1, 0);
-		}
-		else if (Input.IsActionJustPressed(InputBindings.Right))
-		{
-			TryMove(1, 0);
-		}
+		CurrentState.ProcessTurn();
 	}
 	
 	protected override async Task OnTurn(CancellationToken token)
@@ -41,5 +33,20 @@ public partial class Player : Actor
 		}
 		// Creature.RemoveOutline();
 		return;
+	}
+
+	public override void EndTurn()
+	{
+		base.EndTurn();
+		CurrentState = new ExplorationState(this);
+	}
+
+	public void ChangeState(PlayerState newState)
+	{
+		if (CurrentState.GetType() == newState.GetType())
+		{
+			return;
+		}
+		CurrentState = newState;
 	}
 }
