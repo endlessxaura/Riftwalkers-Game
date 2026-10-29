@@ -36,7 +36,7 @@ jobs:
     - name: Create Executable
       run: |
         godot --headless --editor --path . --build-solutions --quit
-        kdir -p build
+        mkdir -p build
         godot --headless --path . --export-release "Windows Desktop" build/Riftwalkers.exe
 
     - name: Upload as Artifact
