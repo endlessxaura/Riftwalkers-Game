@@ -25,7 +25,7 @@ jobs:
       with:
           version: 4.7.2
           use-dotnet: true
-          include-templates: false
+          include-templates: true
 
     - name: Restore Dependencies
       run: dotnet restore
