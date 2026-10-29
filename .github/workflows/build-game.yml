@@ -39,7 +39,12 @@ jobs:
     - name: Create Executable
       run: |
         mkdir -p build
-        godot --headless --path . --export-release "Windows Desktop" build/Riftwalkers.exe
+        godot --headless --path . --export-release "Windows Desktop" build/Riftwalkers.exe 2>&1 | tee build.log
+        if ($LASTEXITCODE -ne 0) {
+          echo "::error::Windows build failed. Check build.log for details."
+          exit 1
+        }
+      shell: pwsh
 
     - name: Upload as Artifact
       uses: actions/upload-artifact@v4
