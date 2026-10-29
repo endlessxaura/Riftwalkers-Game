@@ -13,11 +13,21 @@ public partial class Enemy : Actor
 
     protected override async Task OnTurn(CancellationToken cancellation)
     {
+        // TODO: if multiple players, prioritize
         foreach (Player player in GetTree().GetNodesInGroup(Groups.Players))
         {
-            if (player.GlobalPosition.DistanceTo(GlobalPosition) <= DetectionRadius * Map.TileSize)
+            float distance = player.GlobalPosition.DistanceTo(GlobalPosition);
+            if (distance <= DetectionRadius * Map.TileSize)
             {
-                Creature.MoveToward(player.GlobalPosition);
+                if (distance <= Map.TileSize) // TODO: add range
+                {
+                    Creature.Attack(player.Creature);
+                }
+                else
+                {
+                    Creature.MoveToward(player.GlobalPosition);
+                }
+                return;
             }
         }
     }

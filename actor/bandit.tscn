@@ -10,8 +10,3 @@ Creature = NodePath("Person")
 
 [node name="Person" parent="." unique_id=1983694874 instance=ExtResource("2_uqndw")]
 z_index = 1
-
-[node name="Camera" type="Camera2D" parent="Person" unique_id=1444772459]
-zoom = Vector2(3, 3)
-position_smoothing_enabled = true
-position_smoothing_speed = 2.0

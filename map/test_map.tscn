@@ -26,5 +26,5 @@ tile_set = ExtResource("1_np538")
 [node name="Player" parent="." unique_id=1755440669 instance=ExtResource("2_r1p3x")]
 position = Vector2(85, -132)
 
-[node name="Bandit" parent="." unique_id=1281407735 instance=ExtResource("5_vv62k")]
-position = Vector2(-34, -132)
+[node name="Bandit" parent="." unique_id=1885934340 instance=ExtResource("5_vv62k")]
+position = Vector2(-62, -155)
