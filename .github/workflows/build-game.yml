@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     
     steps:
     - name: Checkout
@@ -27,16 +27,19 @@ jobs:
           use-dotnet: true
           include-templates: false
 
-    - name: Generate .NET Bindings
-      run: godot --headless --path . --build-solutions --quit || exit 0
+    - name: Generate .NET Glue
+      run: godot --headless --generate-mono-glue modules/mono/glue
+
+    - name: Build Godot Managed Libraries
+      run: ./modules/mono/build_scripts/build_assemblies.py --godot-output-dir=./bin
 
     - name: Build Projects
       run: dotnet build --configuration Release
 
-    - name: Create Build
+    - name: Create Executable
       run: godot --headless --path . --export-release Riftwalkers.exe
 
-    - name: Upload Build Artifact
+    - name: Upload as Artifact
       uses: actions/upload-artifact@v4
       with:
         name: Riftwalkers
