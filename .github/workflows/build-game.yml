@@ -33,18 +33,13 @@ jobs:
     - name: Build Projects
       run: dotnet build
 
-    - name: Generate .NET Bindings
-      run: godot --headless --editor --path . --build-solutions --quit | echo
-
     - name: Create Executable
       run: |
         mkdir -p build
-        godot --headless --path . --export-release "Windows Desktop" build/Riftwalkers.exe | echo
-        if ($LASTEXITCODE -ne 0) {
-          echo "::error::Windows build failed"
-          exit 1
-        }
-      shell: pwsh
+        godot --headless --path . --export-release "Windows Desktop" build/Riftwalkers.exe
+        interval=1000
+        intervals=60
+        while [ ! -f build/Riftwalkers.exe  && $intervals -gt 0 ]; do $intervals--; sleep 1000; done
 
     - name: Upload as Artifact
       uses: actions/upload-artifact@v4
