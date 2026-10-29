@@ -27,14 +27,11 @@ jobs:
           use-dotnet: true
           include-templates: false
 
-    - name: Generate .NET Glue
-      run: godot --headless --generate-mono-glue modules/mono/glue
-
-    - name: Build Godot Managed Libraries
-      run: ./modules/mono/build_scripts/build_assemblies.py --godot-output-dir=./bin
+    - name: Restore Dependencies
+      run: dotnet restore
 
     - name: Build Projects
-      run: dotnet build --configuration Release
+      run: dotnet build
 
     - name: Create Executable
       run: godot --headless --path . --export-release Riftwalkers.exe
