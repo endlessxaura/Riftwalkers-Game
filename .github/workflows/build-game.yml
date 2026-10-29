@@ -1,0 +1,43 @@
+name: Build Game
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Setup Godot
+      uses: chickensoft-games/setup-godot@v2
+      with:
+          version: 4.7.2
+          use-dotnet: true
+          include-templates: false
+
+    - name: Generate .NET Bindings
+      run: godot --headless --path . --build-solutions --quit || exit 0
+
+    - name: Build Projects
+      run: dotnet build --configuration Release
+
+    - name: Create Build
+      run: godot --headless --path . --export-release Riftwalkers.exe
+
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Riftwalkers
+        path: ./Riftwalkers.exe
