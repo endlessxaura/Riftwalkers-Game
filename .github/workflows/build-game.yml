@@ -36,10 +36,11 @@ jobs:
     - name: Create Executable
       run: |
         godot --headless --editor --path . --build-solutions --quit
-        godot --headless --path . --export-release "Windows Desktop" Riftwalkers.exe
+        kdir -p build
+        godot --headless --path . --export-release "Windows Desktop" build/Riftwalkers.exe
 
     - name: Upload as Artifact
       uses: actions/upload-artifact@v4
       with:
         name: Riftwalkers
-        path: ./Riftwalkers.exe
+        path: build/Riftwalkers.exe
