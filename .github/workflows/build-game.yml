@@ -44,6 +44,7 @@ jobs:
             $intervals--; 
             sleep 1000; 
         done
+      shell: bash
 
     - name: Upload as Artifact
       uses: actions/upload-artifact@v4
