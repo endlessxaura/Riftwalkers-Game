@@ -39,7 +39,7 @@ jobs:
     - name: Create Executable
       run: |
         mkdir -p build
-        godot --headless --path . --export-release "Windows Desktop" build/Riftwalkers.exe | echo
+        godot --headless --path . --export-release "Windows Desktop" build/Riftwalkers.exe
         if ($LASTEXITCODE -ne 0) {
           echo "::error::Windows build failed. Check build.log for details."
           exit 1
