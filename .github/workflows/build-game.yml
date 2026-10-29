@@ -34,7 +34,9 @@ jobs:
       run: dotnet build
 
     - name: Create Executable
-      run: godot --headless --path . --export-release Riftwalkers.exe
+      run: |
+        godot --headless --editor --path . --build-solutions --quit
+        godot --headless --path . --export-release "Windows Desktop" Riftwalkers.exe
 
     - name: Upload as Artifact
       uses: actions/upload-artifact@v4
