@@ -33,9 +33,11 @@ jobs:
     - name: Build Projects
       run: dotnet build
 
+    - name: Generate .NET Bindings
+      run: godot --headless --editor --path . --build-solutions --quit
+
     - name: Create Executable
       run: |
-        godot --headless --editor --path . --build-solutions --quit
         mkdir -p build
         godot --headless --path . --export-release "Windows Desktop" build/Riftwalkers.exe
 
