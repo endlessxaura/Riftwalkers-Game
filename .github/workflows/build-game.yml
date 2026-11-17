@@ -27,11 +27,8 @@ jobs:
           use-dotnet: true
           include-templates: true
 
-    - name: Restore Dependencies
-      run: dotnet restore
-
-    - name: Build Projects
-      run: dotnet build
+    - name: Run Tests
+      run: dotnet test
 
     - name: Create Executable
       run: |
