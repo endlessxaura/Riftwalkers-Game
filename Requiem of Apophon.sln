@@ -2,6 +2,8 @@
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Requiem of Apophon", "Requiem of Apophon.csproj", "{6BC659B6-AA11-49D4-B322-B5922858EB17}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequiemOfApophon.Tests", "tests\RequiemOfApophon.Tests.csproj", "{C73B4EF1-566A-4E3B-9599-0A547690B2CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 	Debug|Any CPU = Debug|Any CPU
@@ -15,5 +17,11 @@ Global
 		{6BC659B6-AA11-49D4-B322-B5922858EB17}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{6BC659B6-AA11-49D4-B322-B5922858EB17}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{6BC659B6-AA11-49D4-B322-B5922858EB17}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{C73B4EF1-566A-4E3B-9599-0A547690B2CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C73B4EF1-566A-4E3B-9599-0A547690B2CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C73B4EF1-566A-4E3B-9599-0A547690B2CC}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C73B4EF1-566A-4E3B-9599-0A547690B2CC}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{C73B4EF1-566A-4E3B-9599-0A547690B2CC}.ExportRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{C73B4EF1-566A-4E3B-9599-0A547690B2CC}.ExportRelease|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
